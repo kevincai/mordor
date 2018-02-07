@@ -18,6 +18,10 @@ option(BUILD_MORDOR_TESTS "Build mordor tests" ON)
 
 option(BUILD_COVERAGE "Build for code coverage" OFF)
 
+#For compatibility reasons, still set default openssl version to 1.0.1e
+#Can overwrite this value in tethys.cmakevars.bat or tethys.cmakevars.sh
+set(OPENSSL_VERSION "1.0.1e" CACHE STRING "Required Openssl version")
+
 #
 # Mac SDK
 # This must be set as cache variable before project set.  It is ignored by other platforms
@@ -55,7 +59,8 @@ message(STATUS "Output     CMAKE_BINARY_DIR = ${CMAKE_BINARY_DIR}")
 #
 
 
-configure_openssl("1.0.2n")
+message(STATUS "OPENSSL_VERSION = ${OPENSSL_VERSION}")
+configure_openssl(${OPENSSL_VERSION})
 
 #List all boost libraries that are needed (except for the header-only ones which require no linking)
 #This will result in a populated Boost_LIBRARIES variable
