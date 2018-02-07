@@ -46,7 +46,11 @@ macro(getThirdPartyRoot)
         #Note: see build-cmake.sh which supports extraction of THIRDPARTY_LIB_ROOT variable out of xcode
         set(THIRDPARTY_LIB_ROOT $ENV{THIRDPARTY_LIB_ROOT})
     else()
-        set(THIRDPARTY_LIB_ROOT $ENV{THIRDPARTY_LINUX})
+        if (DEFINED ENV{THIRDPARTY_LINUX})
+            set(THIRDPARTY_LIB_ROOT $ENV{THIRDPARTY_LINUX})
+        else()
+            message(FATAL_ERROR "Please set environment variable THIRDPARTY_LIB_ROOT first!")
+        endif()
     endif()
 endmacro()
 

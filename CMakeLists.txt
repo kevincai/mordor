@@ -55,7 +55,7 @@ message(STATUS "Output     CMAKE_BINARY_DIR = ${CMAKE_BINARY_DIR}")
 #
 
 
-configure_openssl("1.0.1e")
+configure_openssl("1.0.2n")
 
 #List all boost libraries that are needed (except for the header-only ones which require no linking)
 #This will result in a populated Boost_LIBRARIES variable

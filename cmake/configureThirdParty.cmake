@@ -79,10 +79,12 @@ macro(configure_openssl version)
 
         set(OPENSSL_INCLUDE_DIR ${OPENSSL_ROOT}/include)
     else()
-        #On linux find the installed version - review should be fail if it doesn't match the provided version argh
-        find_package(OpenSSL REQUIRED)
+        #Find openssl in thirdparty library
+        set(OPENSSL_ROOT_DIR ${THIRDPARTY_LIB_ROOT}/openssl/openssl-${version})
+        message(STATUS "Openssl expected version ${version}")
 
-        message(STATUS "Openssl expected version ${version}, found version ${OPENSSL_VERSION}")
+        find_package(OpenSSL REQUIRED)
+        message(STATUS "Openssl found version ${OPENSSL_VERSION}")
     endif()
 
     include_directories(SYSTEM ${OPENSSL_INCLUDE_DIR})
